@@ -38,4 +38,19 @@
 
 
         finally for organize your code by >>>>>> npx prettier --write src/index.ts
-        
+
+        npm install --save-dev eslint-config-prettie
+
+### Install husky (for check error before commit )
+  
+
+      npm install husky --save-dev
+     yarn add husky --dev
+     yarn add pinst --dev
+     yarn husky install
+     npx husky add .husky/pre-commit "npm test"
+
+### lint staged 
+
+         yarn add --save-dev lint-staged 
+         
