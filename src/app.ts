@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import httpStatus from 'http-status';
+import httpStatus from
+ 'http-status';
 // const express = require('express')
 import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
