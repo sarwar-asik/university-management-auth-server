@@ -9,7 +9,7 @@ export type IAcademicSemesterMonth =
   | 'June'
   | 'July'
   | 'August'
-  | 'September'
+  | 'September'  
   | 'October'
   | 'November'
   | 'December';

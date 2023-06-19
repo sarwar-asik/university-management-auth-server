@@ -4,18 +4,17 @@
 import { ErrorRequestHandler } from 'express'
 import config from '../../../src/config.ts/index'
 import { IGenericErrorMessage } from '../../interfaces/Ierror'
-import handleValidationError from '../../errors/handleValidationError'
 import ApiError from '../../errors/ApiError'
 import configTs from '../../../src/config.ts/index'
 import { errorLogger } from '../../shared/logger'
-
 import  {ZodError} from "zod"
+import handleValidationError from '../../errors/handleValidationError'
 import handleZOdError from '../../errors/handleZOdError'
 import handleCastError from '../../errors/handleCastError'
 
 
 
-const GlobalHandler:ErrorRequestHandler = (error ,req, res,next) => {
+const GlobalHandler: ErrorRequestHandler = (error ,req, res,next) => {
 
 
   configTs.env === "development" ? console.log("globalErrorHandler",error):errorLogger.error("Error from globalError",error)
@@ -30,16 +29,14 @@ const GlobalHandler:ErrorRequestHandler = (error ,req, res,next) => {
     statusCode = simplifiedMessage?.statusCode
     message = simplifiedMessage?.message
 
-
   }
   else if(error instanceof ZodError){
     const simplifiedError =handleZOdError(error)
     statusCode = simplifiedError.statusCode;
     message =simplifiedError.message;
     errorMessage = simplifiedError.errorMessages;
-
-
   }
+
   else if(error?.name ==="CastError"){
     // res.status(400).json({error})
     const simplifiedError = handleCastError(error)
@@ -62,7 +59,6 @@ const GlobalHandler:ErrorRequestHandler = (error ,req, res,next) => {
   }
  
  
-
   res.status(statusCode).json({
     success: false,
     message,

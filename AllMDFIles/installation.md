@@ -32,6 +32,114 @@
 
      "start":"ts-node-dev --respawn --transpile-only server.ts"
 
+### 8 . Create src>server.ts  :::
+                import mongoose from "mongoose";
+                import "colors";
+                import { Server } from "http";
+                import app from "./app";
+                import config from "./config";
+
+                process.on("uncaughtException", (err) => {
+                console.log("UnCaught rejection is detected from serve.ts", err);
+                process.exit(1);
+                });
+
+                let server: Server;
+
+                console.log(config.data_url, "data url");
+
+                async function mainFUnction() {
+                try {
+                await mongoose.connect(config.data_url as string, {
+                dbName: "University-management",
+                });
+
+                console.log("db Connected successfully ".green.underline.bold);
+
+                server = app.listen(6000, () => {
+                console.log(`server app listening on port 6000 `.green.bold);
+                });
+                } catch (error) {
+                // const  {name,message,stack}=error;
+                console.log("failed to connect ".red.underline, error);
+                }
+
+                process.on("unhandledRejection", (error) => {
+                // eslint-disable-next-line no-console
+                console.log(
+                "UnHandle rejection is detected and closing the main() in serve.ts"
+                );
+                if (server) {
+                server.close(() => {
+                        console.log(error);
+                        process.exit(1);
+                });
+                } else {
+                process.exit(1);
+                }
+                });
+                }
+
+                process.on("SIGTERM", () => {
+                console.log("SIGTERM is received ");
+                if (server) {
+                server.close();
+                }
+                });
+
+                mainFUnction();
+
+
+
+### 8 . Create src>app.ts.ts :::
+        import cors from "cors";
+        import express, { Application, NextFunction, Request, Response } from "express";
+
+        const app: Application = express();
+        // const port = 3000
+
+        app.use(cors());
+        app.use(express.json());
+        app.use(express.urlencoded({ extended: true }));
+
+        app.get("/", async (req: Request, res: Response) => {
+        res.send({ status: "success", data: "Successfully running" });
+        });
+
+        app.use((req: Request, res: Response, next: NextFunction) => {
+        res.status(401).json({
+        success: false,
+        message: "NOt Found",
+        errorMessages: [
+        {
+                path: req.originalUrl,
+                message: "API Not Found",
+        },
+        ],
+        });
+        next();
+        });
+
+        export default app;
+
+
+
+
+### 8 . Create src>config>index.ts
+        import dotenv from "dotenv";
+        import path from "path";
+
+                dotenv.config({ path: path.join(process.cwd(), ".env") });
+                // console.log(process.env, "allEnv");
+
+                export default {
+                env: process.env.NODE_ENV,
+                data_url: process.env.URL,
+                port: process.env.PORT,
+                };
+
+
+
 ### !!!! we can use ErrorRequestHandler for exchange Request,Response,NextFunction
 
         const getUser:RequestHandler = async (req, res) => {

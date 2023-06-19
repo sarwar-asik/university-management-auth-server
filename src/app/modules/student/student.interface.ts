@@ -1,12 +1,7 @@
-import { InferSchemaType, Model, Types } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { IAcademicFaculty } from '../academicFaculty/acdemicFaculty.interface';
 import { IDepartment } from '../academicDepartment/acdemicDept.interface';
 import { IAcademicSemester } from '../academicSemister/academicSemister.interace';
-import { StudentSchema } from './student.model';
-
-
-// type Istudent = InferSchemaType<typeof StudentSchema>
-// export UserModel = Model<Istudent,Record<string,unknown>>
 
 export type UserName = {
   firstName: string;
