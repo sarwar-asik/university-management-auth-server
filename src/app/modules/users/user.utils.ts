@@ -11,8 +11,9 @@ export const findLastStudentId = async (): Promise<string | undefined> => {
   return lastStudent?.id ? lastStudent?.id.substring(4) : undefined
 };
 
+
 export const generateStudentId = async (
-  academicSemester: IAcademicSemester
+  academicSemester: IAcademicSemester | null
 ): Promise<string> => {
   const currentId =
     (await findLastStudentId()) || (0).toString().padStart(5, '0');
@@ -20,8 +21,8 @@ export const generateStudentId = async (
   let incrementId = (parseInt(currentId) + 1).toString().padStart(5, '0');
   console.log('user academic-semester==', academicSemester);
 
-  incrementId = `${academicSemester.year.substring(2)}${
-    academicSemester.code
+  incrementId = `${academicSemester?.year.substring(2)}${
+    academicSemester?.code
   }${incrementId}`;
 
   console.log('incrementid', incrementId, 'currentId', currentId);

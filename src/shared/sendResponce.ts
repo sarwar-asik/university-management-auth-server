@@ -5,9 +5,9 @@ export type IApiResponse<T> = {
   success: boolean;
   message: string | null;
   meta?: {
-    page: number;
-    limit: number;
-    total: number;
+    page: number | null;
+    limit: number | null;
+    total: number | null;
   } | null;
   data: T | null;
 };

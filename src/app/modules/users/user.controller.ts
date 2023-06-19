@@ -6,11 +6,16 @@ import { UserService } from './user.services';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponce';
 
-const createUser = catchAsync(async (req: Request, res: Response) => {
-  const user = req.body;
+const createStudent = catchAsync(async (req: Request, res: Response) => {
+
+  const {student,...userData}= req.body;
+
+  
+
   // console.log(user, 'from controller=================');
  
-  const result = await UserService.createUserServices(user);
+  const result = await UserService.createStudentServices(student,userData);
+
   if (result) {
     sendResponse(res, {
       success: true,
@@ -18,7 +23,7 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
       statusCode: 200,
       data: result,
     });
-    // next()
+
   }
 });
 
@@ -32,4 +37,4 @@ const getUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export const userController = { createUser, getUser };
+export const userController = { createUser: createStudent, getUser };

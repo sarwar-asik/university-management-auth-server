@@ -18,3 +18,11 @@ export type IGenericSemesterResponse<T> = {
   };
   data: T;
 };
+export type IGenericStudentResponse<T> = {
+  meta: {
+    page: number | null ;
+    limit: number | null ;
+    total: number | null ;
+  };
+  data: T;
+};
