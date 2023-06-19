@@ -9,7 +9,7 @@ import sendResponse from '../../../shared/sendResponce';
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const user = req.body;
   // console.log(user, 'from controller=================');
-  // console.log('hitted', data);
+ 
   const result = await UserService.createUserServices(user);
   if (result) {
     sendResponse(res, {

@@ -1,4 +1,5 @@
 import express from 'express'
+
 import { userController } from './user.controller'
 import validateRequest from '../../middlesWare/validateUserRequest'
 import { UserValidation } from './user.validation'
