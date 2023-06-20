@@ -6,7 +6,7 @@
     '    at listOnTimeout (node:internal/timers:559:17)\n' +
     '    at processTimers (node:internal/timers:502:7)',
   label: 'right meow!',
-  timestamp: '2023-06-19T12:56:40.156Z'
+  timestamp: '2023-06-20T04:21:09.745Z'
 }
 {
   level: 'error',
@@ -16,5 +16,15 @@
     '    at listOnTimeout (node:internal/timers:559:17)\n' +
     '    at processTimers (node:internal/timers:502:7)',
   label: 'right meow!',
-  timestamp: '2023-06-19T12:57:07.623Z'
+  timestamp: '2023-06-20T04:21:25.290Z'
+}
+{
+  level: 'error',
+  message: 'UnCaught rejection is detected from serve.ts Operation `users.findOne()` buffering timed out after 10000ms',
+  stack: 'MongooseError: Operation `users.findOne()` buffering timed out after 10000ms\n' +
+    '    at Timeout.<anonymous> (C:\\course\\NEXT_LEVEL_2\\university-mangement1\\node_modules\\mongoose\\lib\\drivers\\node-mongodb-native\\collection.js:185:23)\n' +
+    '    at listOnTimeout (node:internal/timers:559:17)\n' +
+    '    at processTimers (node:internal/timers:502:7)',
+  label: 'right meow!',
+  timestamp: '2023-06-20T04:23:09.784Z'
 }

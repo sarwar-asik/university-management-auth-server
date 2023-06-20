@@ -3,14 +3,16 @@ import { IAcademicSemester } from '../academicSemister/academicSemister.interace
 import { User } from './user.model';
 
 export const findLastStudentId = async (): Promise<string | undefined> => {
-  const lastStudent = await User.findOne({
-    role:"student"
-  }, { id: 1, _id: 0 })
+  const lastStudent = await User.findOne(
+    {
+      role: 'student',
+    },
+    { id: 1, _id: 0 }
+  )
     .sort({ createdAt: -1 })
     .lean();
-  return lastStudent?.id ? lastStudent?.id.substring(4) : undefined
+  return lastStudent?.id ? lastStudent?.id.substring(4) : undefined;
 };
-
 
 export const generateStudentId = async (
   academicSemester: IAcademicSemester | null
@@ -39,15 +41,18 @@ export const generateStudentId = async (
 // return lastStudent?.id;
 
 export const findLastFacultyId = async (): Promise<string | undefined> => {
-  const lastFaculty = await User.findOne({
-    role:"student"
-  }, { id: 1, _id: 0 })
+  const lastFaculty = await User.findOne(
+    {
+      role: 'student',
+    },
+    { id: 1, _id: 0 }
+  )
     .sort({
       createdAt: -1,
     })
     .lean();
 
-  return lastFaculty?.id ?lastFaculty.id.substring(2):undefined
+  return lastFaculty?.id ? lastFaculty.id.substring(2) : undefined;
 };
 
 export const generateFacultyId = async (): Promise<string> => {

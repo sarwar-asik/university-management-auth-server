@@ -8,7 +8,7 @@ import GlobalHandler from './app/middlesWare/globalErrorHandler';
 
 import routes from './app/routes';
 import sendResponse from './shared/sendResponce';
-import { generateFacultyId } from './app/modules/users/user.utils';
+// import { generateFacultyId } from './app/modules/users/user.utils';
 
 // import { createUser } from './app/modules/users/users.services'
 
@@ -68,12 +68,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 //   year: '2025',
 // };
 
-const testId = async () => {
-  const testId = await generateFacultyId();
+// const testId = async () => {
+//   const testId = await generateFacultyId();
 
-  console.log(testId, 'testId from app.ts');
-};
+//   console.log(testId, 'testId from app.ts');
+// };
 
-testId();
+// testId();
 
 export default app;
