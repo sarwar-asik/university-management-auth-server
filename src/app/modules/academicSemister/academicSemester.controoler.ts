@@ -103,11 +103,11 @@ const getSingleSemester =catchAsync(
     );
     // console.log(result);
 
-    sendResponse<IAcademicSemester[]>(res, {
+    sendResponse<IAcademicSemester>(res, {
       success: true,
       message: 'successfully get semester',
       statusCode: 200,
-      data: result ||undefined || null ,
+      data: result || null ,
     })
   }
 )
@@ -149,7 +149,7 @@ const deleteSingleSemester =catchAsync(
     );
     // console.log(result);
 
-    sendResponse<IAcademicSemester[]>(res, {
+    sendResponse<IAcademicSemester>(res, {
       success: true,
       message: 'successfully Deleted semester',
       statusCode: 200,

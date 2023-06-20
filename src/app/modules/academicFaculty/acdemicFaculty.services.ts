@@ -78,7 +78,7 @@ const GetPaginationFacultyService = async (
 
 const GetSingleFacultyService = async (
   id:string
-): Promise<IAcademicFaculty | null> => {
+): Promise<IAcademicFaculty| null> => {
 
   console.log(id,"form services");
   const result = await Faculty.findById(id)

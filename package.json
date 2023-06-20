@@ -23,7 +23,9 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/http-status": "^1.1.2",
+    "bcrypt": "^5.1.0",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.1.3",

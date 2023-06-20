@@ -120,7 +120,7 @@ const GetPaginationSemesterService = async (
       limit: limit,
       total: total,
     },
-    data: result,
+    data: result || null,
   };
 };
 

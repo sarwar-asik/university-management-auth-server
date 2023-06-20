@@ -8,7 +8,8 @@ import pick from '../../../shared/pick';
 import { paginationFields } from '../../../constant/pagination';
 import { FacultyService } from './acdemicFaculty.services';
 import { Faculty } from './acdemicFaculty.model';
-import { IFaculty } from './acdemicFaculty.interface';
+import { IAcademicFaculty } from './acdemicFaculty.interface';
+
 
 
 
@@ -65,7 +66,7 @@ const getAllPaginationFaculty: RequestHandler = catchAsync(
     );
     // console.log(result);
 
-    sendResponse<IFaculty[]>(res, {
+    sendResponse<IAcademicFaculty[]>(res, {
       success: true,
       message: 'successfully get Faculty',
       statusCode: 200,
@@ -85,11 +86,11 @@ const getSingleFaculty =catchAsync(
       id
     )
     // console.log(result);
-    sendResponse<IFaculty[]>(res, {
+    sendResponse<IAcademicFaculty>(res, {
       success: true,
       message: 'successfully get Faculty',
       statusCode: 200,
-      data: result ||undefined || null ,
+      data: result ,
     })
   }
 )
@@ -131,7 +132,7 @@ const deleteSingleFaculty =catchAsync(
     );
     // console.log(result);
 
-    sendResponse<IFaculty[]>(res, {
+    sendResponse<IAcademicFaculty>(res, {
       success: true,
       message: 'successfully Deleted Faculty',
       statusCode: 200,

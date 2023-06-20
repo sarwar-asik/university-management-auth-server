@@ -9,7 +9,7 @@ export type IApiResponse<T> = {
     limit: number | null;
     total: number | null;
   } | null;
-  data: T | null;
+  data?: T | null;
 };
 
 const sendResponse = <T>(res: Response, data: IApiResponse<T>): void => {

@@ -4,7 +4,7 @@ import { Request, RequestHandler, Response } from 'express';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponce';
 import pick from '../../../shared/pick';
-import { paginationFields } from '../../../constant/pagination';
+
 import { AcademicDepartment } from './acdemicDept.model';
 import { DeptService } from './acdemicDept.services';
 import { IDepartment } from './acdemicDept.interface';
@@ -30,7 +30,7 @@ const createDeptController = catchAsync(async (req: Request, res: Response) => {
 
 const getAllDept: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-    const data = await AcademicDepartment.find();
+    const data = await AcademicDepartment.find().populate('academicFaculty');
 
     if (data.length > 0) {
       sendResponse(res, {
@@ -45,7 +45,6 @@ const getAllDept: RequestHandler = catchAsync(
   }
 );
 
-
 // {{UNV}}/department/All-department?searchTerm=Physics
 
 const getAllPaginationDept: RequestHandler = catchAsync(
@@ -55,7 +54,12 @@ const getAllPaginationDept: RequestHandler = catchAsync(
 
     // console.log(paginationOptions, 'paginationOption');
 
-    const paginationOptions = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
+    const paginationOptions = pick(req.query, [
+      'page',
+      'limit',
+      'sortBy',
+      'sortOrder',
+    ]);
 
     // console.log(filters,"from controller",paginationOptions);
 
@@ -64,7 +68,7 @@ const getAllPaginationDept: RequestHandler = catchAsync(
     const result = await DeptService.GetPaginationDeptService(
       filters,
       paginationOptions
-    )
+    );
 
     // console.log(result);
     sendResponse<IDepartment[]>(res, {
@@ -83,7 +87,7 @@ const getSingleDept = catchAsync(async (req: Request, res: Response) => {
   // console.log(req.params);
   const result = await DeptService.GetSingleDeptService(id);
   // console.log(result);
-  sendResponse<IDepartment[]>(res, {
+  sendResponse<IDepartment>(res, {
     success: true,
     message: 'successfully get Dept',
     statusCode: 200,
@@ -115,7 +119,7 @@ const deleteSingleDept = catchAsync(async (req: Request, res: Response) => {
   const result = await DeptService.DeleteSingleDeptService(id);
   // console.log(result);
 
-  sendResponse<IDepartment[]>(res, {
+  sendResponse<IDepartment>(res, {
     success: true,
     message: 'successfully Deleted Dept',
     statusCode: 200,

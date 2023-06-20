@@ -11,6 +11,7 @@ import mongoose from 'mongoose';
 import { Student } from '../student/student.model';
 import ApiError from '../../../errors/ApiError';
 import { User } from './user.model';
+import bcrypt from 'bcrypt';
 
 const createStudentServices = async (
   student: IStudent,
@@ -19,6 +20,13 @@ const createStudentServices = async (
   if (!user?.password) {
     user.password = config.default_user_pass as string;
   }
+
+
+// hash password ///
+
+
+
+
 
   // console.log(student, 'from services',user);
   user.role = 'student';
