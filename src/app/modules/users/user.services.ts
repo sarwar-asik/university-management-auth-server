@@ -11,7 +11,7 @@ import mongoose from 'mongoose';
 import { Student } from '../student/student.model';
 import ApiError from '../../../errors/ApiError';
 import { User } from './user.model';
-import bcrypt from 'bcrypt';
+// import bcrypt from 'bcrypt';
 
 const createStudentServices = async (
   student: IStudent,
@@ -22,7 +22,7 @@ const createStudentServices = async (
   }
 
 
-// hash password ///
+
 
 
 
@@ -36,7 +36,7 @@ const createStudentServices = async (
   const academicsemester = await AcademicSemester.findById(
     student.academicSemester
   );
-  console.log(academicsemester, 'sssssssssss');
+  // console.log(academicsemester, 'sssssssssss');
 
   if (!academicsemester) {
     throw new ApiError(401, 'Cannot get academic semester student');
@@ -54,13 +54,14 @@ const createStudentServices = async (
     const id = await generateStudentId(academicsemester);
     user.id = id;
     student.id = id;
+
     const createStudent = await Student.create([student], { session });
     if (!createStudent.length) {
       throw new ApiError(401, 'Failed to create student');
     }
 
     user.student = createStudent[0]._id;
-    const newUser = await User.create([user], { session });
+    const newUser = await User.create([user], { session })
     if (!newUser.length) {
       throw new ApiError(401, 'Failed to create user');
     }
@@ -78,7 +79,7 @@ const createStudentServices = async (
   }
 
   if (newUserAllData) {
-    newUserAllData = await User.findOne({ _id: newUserAllData.id }).populate({
+    newUserAllData = await User.findOne({ id: newUserAllData.id }).populate({
       path: 'student',
       populate: [
         { path: 'academicSemester' },

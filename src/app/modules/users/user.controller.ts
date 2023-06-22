@@ -31,7 +31,7 @@ const getUser = catchAsync(async (req: Request, res: Response) => {
   const data = await User.find();
   sendResponse(res, {
     success: true,
-    message: 'successfully create semester',
+    message: 'successfully user login',
     statusCode: 200,
     data: data,
   });

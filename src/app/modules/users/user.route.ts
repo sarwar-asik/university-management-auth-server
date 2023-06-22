@@ -14,7 +14,6 @@ userController.createUser
 
 
 
-
 router.get("/",userController.getUser)
 
 export const UserRouter = router

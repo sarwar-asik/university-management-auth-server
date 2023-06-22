@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 import { Schema, model } from 'mongoose';
 import { IUser, UserModel } from './user.interface';
+import bcrypt from "bcrypt"
+import configTs from '../../../config.ts';
 
 const userSchema = new Schema<IUser>(
   {
@@ -16,9 +19,13 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
+    needsPasswordsChange: {
+      type: Boolean,
+      default: true,
+    },
     student:{
       type:Schema.Types.ObjectId,
-      ref:'student'
+      ref:'Student'
 
     },
     faculty:{
@@ -36,5 +43,18 @@ const userSchema = new Schema<IUser>(
     timestamps: true,
   }
 );
+userSchema.pre('save',async function(next){
+  /////  hassing user password
+  // hash password ///
+  const user = this
+user.password  = await bcrypt.hash(
+  
+  user.password,
+  Number(configTs.bcrypt_salt_rounds)
+  )
+  next()
+
+
+})
 
 export const User = model<IUser, UserModel>('User', userSchema);

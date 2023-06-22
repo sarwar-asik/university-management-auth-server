@@ -11,7 +11,8 @@ export default {
     env:process.env.NODE_ENV,
     port:process.env.PORT,
     data_url:process.env.DB_URL,
-    default_user_pass:process.env.DEFAULT_STUDENT_PASSWORD
+    default_user_pass:process.env.DEFAULT_STUDENT_PASSWORD,
+    bcrypt_salt_rounds:process.env.BCRYPT_SALT_ROUNDS
     
 }
 
