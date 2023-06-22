@@ -31,8 +31,8 @@ export type IUser = {
 // for statice method ////
 
   export type  UserModel ={
-    isUserExists(id:string):Promise<Pick<IUser,'id'| 'password'|'needsPasswordsChange'>>
-    isPasswordMatch( givenPassword: string,
+    isUserExistsMethod(id:string):Promise<Pick<IUser,'id'| 'password'|'needsPasswordsChange'|'role'>>
+    isPasswordMatchMethod( givenPassword: string,
       savedPassword: string):Promise<boolean | null> 
 
   } & Model<IUser>

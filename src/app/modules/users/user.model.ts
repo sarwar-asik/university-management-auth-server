@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-this-alias */
 import { Schema, model } from 'mongoose';
 import { IUser, UserModel } from './user.interface';
 import bcrypt from 'bcrypt';
 import configTs from '../../../config.ts';
 
-const userSchema = new Schema<IUser,UserModel>(
+const userSchema = new Schema<IUser, UserModel>(
   {
     id: {
       type: String,
@@ -58,20 +59,23 @@ const userSchema = new Schema<IUser,UserModel>(
 //   return await bcrypt.compare(givenPassword, savedPassword);
 // };
 
-
-userSchema.statics.isUserExist = async function (id:string):Promise<Pick<IUser,'id'|'password'|'needsPasswordsChange'>| null> {
-    const user = await User.findOne(
+userSchema.statics.isUserExistsMethod = async function (
+  id: string
+): Promise<Pick<IUser, 'id' | 'password' | 'needsPasswordsChange' |'role'> | null> {
+  // console.log('isUserExtists');
+  const user = await User.findOne(
     { id },
-    { id: 1, password: 1, needsPasswordsChange: 1 }
+    { id: 1, password: 1,role:1, needsPasswordsChange: 1 }
   );
   return user;
-}
+};
 
-
-userSchema.statics.isPasswordMatch = async function (  givenPassword: string,
-  savedPassword: string):Promise<boolean | null> {
-    return await bcrypt.compare(givenPassword, savedPassword);
-}
+userSchema.statics.isPasswordMatchMethod = async function (
+  givenPassword: string,
+  savedPassword: string
+): Promise<boolean | null> {
+  return await bcrypt.compare(givenPassword, savedPassword);
+};
 
 userSchema.pre('save', async function (next) {
   /////  hassing user password

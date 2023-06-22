@@ -5,6 +5,7 @@ import { User } from './user.model';
 import { UserService } from './user.services';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponce';
+import httpStatus from 'http-status';
 
 const createStudent = catchAsync(async (req: Request, res: Response) => {
 
@@ -19,8 +20,8 @@ const createStudent = catchAsync(async (req: Request, res: Response) => {
   if (result) {
     sendResponse(res, {
       success: true,
-      message: 'successfully create semester',
-      statusCode: 200,
+      message: 'successfully create User',
+      statusCode: httpStatus.CREATED,
       data: result,
     });
 
@@ -32,7 +33,7 @@ const getUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     message: 'successfully user login',
-    statusCode: 200,
+    statusCode: httpStatus.FOUND,
     data: data,
   });
 });
