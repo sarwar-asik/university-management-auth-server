@@ -8,13 +8,13 @@ import { ILogin } from "./auth.Interface"
 export const authServices =async(payload:ILogin )=>{
     const {id,password} =payload
 
-    const user =new  User()  ///could not get statics method without declar the the instance
+  ///could not get statics method without declar the the instance
 
 
 
     // const isUserExist = await User.findOne({id},{id:1,password:1,needsPasswordsChange:1}).lean()
 
-    const isUserExist  = await user.isUserExist(id)
+    const isUserExist  = await User.isUserExists(id)
 
 
     if(!isUserExist){
@@ -24,7 +24,7 @@ export const authServices =async(payload:ILogin )=>{
 
     // const isPassMatch = await user.isPasswordMatch(password,isUserExist?.password)
 
-    if(isUserExist.password && !user.isPasswordMatch(password,isUserExist?.password)){
+    if(isUserExist.password && !User.isPasswordMatch(password,isUserExist?.password)){
         throw new ApiError(401,"Password is not correct")
     }
 

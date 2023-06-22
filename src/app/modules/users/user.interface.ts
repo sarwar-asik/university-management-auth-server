@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 import { Model, Types } from 'mongoose';
 import { IStudent } from '../student/student.interface';
@@ -15,14 +16,25 @@ export type IUser = {
   admin?: Types.ObjectId;
 };
 
-export type IUserMethod= {
 
-  isUserExist(
-    id: string
-    ): Promise<Partial<IUser> | null>;
-  isPasswordMatch(
-    givenPassword: string, savedPassword: string
-    ):Promise<boolean>
-}
+// for instance method
+// export type IUserMethod= {
 
-export type UserModel = Model<IUser, Record<string, unknown>,IUserMethod>;
+//   isUserExist(
+//     id: string
+//     ): Promise<Partial<IUser> | null>;
+//   isPasswordMatch(
+//     givenPassword: string, savedPassword: string
+//     ):Promise<boolean>
+// }
+
+// for statice method ////
+
+  export type  UserModel ={
+    isUserExists(id:string):Promise<Pick<IUser,'id'| 'password'|'needsPasswordsChange'>>
+    isPasswordMatch( givenPassword: string,
+      savedPassword: string):Promise<boolean | null> 
+
+  } & Model<IUser>
+
+// export type UserModel = Model<IUser, Record<string, unknown>,IUserMethod>;
