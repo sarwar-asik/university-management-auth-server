@@ -14,6 +14,12 @@ validateRequest(AuthValidation.createUserZodSchema),
 authController.loginController
 )
 
+router.post(
+'/refreshToken',
+validateRequest(AuthValidation.refreshTokenZodSchema),
+authController.refreshTokenController
+)
+
 
 
 // router.get("/",userController.getUser)

@@ -1,0 +1,24 @@
+{
+  errno: undefined,
+  code: 'ECONNREFUSED',
+  syscall: 'querySrv',
+  hostname: '_mongodb._tcp.cluster0.ysfeeva.mongodb.net',
+  level: 'error',
+  message: '\x1B[4m\x1B[31mfailed to connect \x1B[39m\x1B[24m querySrv ECONNREFUSED _mongodb._tcp.cluster0.ysfeeva.mongodb.net',
+  stack: 'Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.ysfeeva.mongodb.net\n' +
+    '    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:240:17)',
+  label: 'right meow!',
+  timestamp: '2023-06-22T09:13:04.584Z'
+}
+{
+  errno: undefined,
+  code: 'ECONNREFUSED',
+  syscall: 'querySrv',
+  hostname: '_mongodb._tcp.cluster0.ysfeeva.mongodb.net',
+  level: 'error',
+  message: '\x1B[4m\x1B[31mfailed to connect \x1B[39m\x1B[24m querySrv ECONNREFUSED _mongodb._tcp.cluster0.ysfeeva.mongodb.net',
+  stack: 'Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.ysfeeva.mongodb.net\n' +
+    '    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:240:17)',
+  label: 'right meow!',
+  timestamp: '2023-06-22T09:13:10.179Z'
+}

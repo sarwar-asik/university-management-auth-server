@@ -2,7 +2,7 @@
 
 import { IUser } from './user.interface';
 
-import config from '../../../config.ts/index';
+
 import { generateStudentId } from './user.utils';
 
 import { AcademicSemester } from '../academicSemister/AcademicSemesterModel';
@@ -11,6 +11,7 @@ import mongoose from 'mongoose';
 import { Student } from '../student/student.model';
 import ApiError from '../../../errors/ApiError';
 import { User } from './user.model';
+import config from '../../../config';
 // import bcrypt from 'bcrypt';
 
 const createStudentServices = async (
@@ -54,14 +55,14 @@ const createStudentServices = async (
     const id = await generateStudentId(academicsemester);
     user.id = id;
     student.id = id;
-
     const createStudent = await Student.create([student], { session });
     if (!createStudent.length) {
       throw new ApiError(401, 'Failed to create student');
     }
 
     user.student = createStudent[0]._id;
-    const newUser = await User.create([user], { session })
+    const newUser = await User.create([user], { session });
+    // console.log(newUser,"asssssssssssss");
     if (!newUser.length) {
       throw new ApiError(401, 'Failed to create user');
     }

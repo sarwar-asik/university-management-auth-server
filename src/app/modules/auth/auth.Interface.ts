@@ -7,6 +7,12 @@ export type ILogin= {
 
 export type ILoginResponse ={
     accessToken:string,
-    refreshToken:string,
+    refreshToken?:string,
     needsPasswordsChange:boolean
 }
+
+export type IRefreshTokenResponse = {
+    accessToken: string;
+  };
+
+  

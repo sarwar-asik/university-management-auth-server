@@ -3,7 +3,7 @@
 import { Schema, model } from 'mongoose';
 import { IUser, UserModel } from './user.interface';
 import bcrypt from 'bcrypt';
-import configTs from '../../../config.ts';
+import configTs from '../../../config';
 
 const userSchema = new Schema<IUser, UserModel>(
   {
@@ -61,11 +61,14 @@ const userSchema = new Schema<IUser, UserModel>(
 
 userSchema.statics.isUserExistsMethod = async function (
   id: string
-): Promise<Pick<IUser, 'id' | 'password' | 'needsPasswordsChange' |'role'> | null> {
+): Promise<Pick<
+  IUser,
+  'id' | 'password' | 'needsPasswordsChange' | 'role'
+> | null> {
   // console.log('isUserExtists');
   const user = await User.findOne(
     { id },
-    { id: 1, password: 1,role:1, needsPasswordsChange: 1 }
+    { id: 1, password: 1, role: 1, needsPasswordsChange: 1 }
   );
   return user;
 };

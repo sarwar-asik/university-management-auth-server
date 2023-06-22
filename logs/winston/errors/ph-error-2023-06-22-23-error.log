@@ -1,0 +1,88 @@
+{
+  issues: [
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [ 'cookies', 'refreshToken' ],
+      message: 'Refresh Token is required (zod)'
+    }
+  ],
+  addIssue: [Function (anonymous)],
+  addIssues: [Function (anonymous)],
+  name: 'ZodError',
+  level: 'error',
+  message: 'Error from globalError [\n' +
+    '  {\n' +
+    '    "code": "invalid_type",\n' +
+    '    "expected": "string",\n' +
+    '    "received": "undefined",\n' +
+    '    "path": [\n' +
+    '      "cookies",\n' +
+    '      "refreshToken"\n' +
+    '    ],\n' +
+    '    "message": "Refresh Token is required (zod)"\n' +
+    '  }\n' +
+    ']',
+  stack: 'ZodError: [\n' +
+    '  {\n' +
+    '    "code": "invalid_type",\n' +
+    '    "expected": "string",\n' +
+    '    "received": "undefined",\n' +
+    '    "path": [\n' +
+    '      "cookies",\n' +
+    '      "refreshToken"\n' +
+    '    ],\n' +
+    '    "message": "Refresh Token is required (zod)"\n' +
+    '  }\n' +
+    ']\n' +
+    '    at Object.get error [as error] (C:\\course\\NEXT_LEVEL_2\\university-mangement1\\node_modules\\zod\\lib\\types.js:43:31)\n' +
+    '    at ZodObject.parseAsync (C:\\course\\NEXT_LEVEL_2\\university-mangement1\\node_modules\\zod\\lib\\types.js:164:22)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  label: 'right meow!',
+  timestamp: '2023-06-22T17:16:57.346Z'
+}
+{
+  issues: [
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [ 'cookies', 'refreshToken' ],
+      message: 'Refresh Token is required (zod)'
+    }
+  ],
+  addIssue: [Function (anonymous)],
+  addIssues: [Function (anonymous)],
+  name: 'ZodError',
+  level: 'error',
+  message: 'Error from globalError [\n' +
+    '  {\n' +
+    '    "code": "invalid_type",\n' +
+    '    "expected": "string",\n' +
+    '    "received": "undefined",\n' +
+    '    "path": [\n' +
+    '      "cookies",\n' +
+    '      "refreshToken"\n' +
+    '    ],\n' +
+    '    "message": "Refresh Token is required (zod)"\n' +
+    '  }\n' +
+    ']',
+  stack: 'ZodError: [\n' +
+    '  {\n' +
+    '    "code": "invalid_type",\n' +
+    '    "expected": "string",\n' +
+    '    "received": "undefined",\n' +
+    '    "path": [\n' +
+    '      "cookies",\n' +
+    '      "refreshToken"\n' +
+    '    ],\n' +
+    '    "message": "Refresh Token is required (zod)"\n' +
+    '  }\n' +
+    ']\n' +
+    '    at Object.get error [as error] (C:\\course\\NEXT_LEVEL_2\\university-mangement1\\node_modules\\zod\\lib\\types.js:43:31)\n' +
+    '    at ZodObject.parseAsync (C:\\course\\NEXT_LEVEL_2\\university-mangement1\\node_modules\\zod\\lib\\types.js:164:22)\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)',
+  label: 'right meow!',
+  timestamp: '2023-06-22T17:17:00.297Z'
+}

@@ -11,13 +11,15 @@ const createStudent = catchAsync(async (req: Request, res: Response) => {
 
   const {student,...userData}= req.body;
 
+  console.log('Cookie',req.cookies);
+
   
 
   // console.log(user, 'from controller=================');
  
   const result = await UserService.createStudentServices(student,userData);
 
-  if (result) {
+
     sendResponse(res, {
       success: true,
       message: 'successfully create User',
@@ -25,7 +27,7 @@ const createStudent = catchAsync(async (req: Request, res: Response) => {
       data: result,
     });
 
-  }
+
 });
 
 const getUser = catchAsync(async (req: Request, res: Response) => {
