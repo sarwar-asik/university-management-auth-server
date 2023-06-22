@@ -35,7 +35,7 @@ const createFacultyController = catchAsync(
 
 const getAllFaculty: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-    const data = await Faculty.find();
+    const data = await Faculty.find({});
 
     if (data.length > 0) {
       sendResponse(res, {
@@ -53,7 +53,8 @@ const getAllFaculty: RequestHandler = catchAsync(
 
 const getAllPaginationFaculty: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-   
+  //  console.log(req.headers.authorization,"headers");
+  console.log(req.user,"req.user");
 
     const paginationOptions = pick(req.query, paginationFields);
 
