@@ -67,6 +67,7 @@ userSchema.statics.isUserExist = async function (id:string):Promise<Pick<IUser,'
   return user;
 }
 
+
 userSchema.statics.isPasswordMatch = async function (  givenPassword: string,
   savedPassword: string):Promise<boolean | null> {
     return await bcrypt.compare(givenPassword, savedPassword);

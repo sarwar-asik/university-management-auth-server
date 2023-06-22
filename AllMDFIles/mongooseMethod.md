@@ -70,3 +70,5 @@
             return await bcrypt.compare(givenPassword, savedPassword);
         }
 #### modules>user>user.service.ts (statics) :::::
+
+    const isUserExist  = await User.isUserExists(id)

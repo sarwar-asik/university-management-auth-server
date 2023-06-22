@@ -24,7 +24,7 @@ export const authServices =async(payload:ILogin )=>{
 
     // const isPassMatch = await user.isPasswordMatch(password,isUserExist?.password)
 
-    if(isUserExist.password && !User.isPasswordMatch(password,isUserExist?.password)){
+    if(isUserExist.password && !await User.isPasswordMatch(password,isUserExist?.password)){
         throw new ApiError(401,"Password is not correct")
     }
 
