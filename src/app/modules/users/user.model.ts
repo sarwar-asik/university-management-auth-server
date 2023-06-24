@@ -1,5 +1,6 @@
-/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-this-alias */
+/* eslint-disable no-console */
+
 import { Schema, model } from 'mongoose';
 import { IUser, UserModel } from './user.interface';
 import bcrypt from 'bcrypt';
@@ -79,6 +80,7 @@ userSchema.statics.isPasswordMatchMethod = async function (
 ): Promise<boolean | null> {
   return await bcrypt.compare(givenPassword, savedPassword);
 };
+
 
 userSchema.pre('save', async function (next) {
   /////  hassing user password

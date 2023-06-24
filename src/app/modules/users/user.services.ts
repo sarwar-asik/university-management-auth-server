@@ -26,9 +26,6 @@ const createStudentServices = async (
 
 
 
-
-
-
   // console.log(student, 'from services',user);
   user.role = 'student';
 

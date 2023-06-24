@@ -34,7 +34,7 @@ const auth =
         throw new ApiError(httpStatus.FORBIDDEN, 'Forbidden');
       }
       next();
-    } catch (error) {
+    } catch (error) { 
       next(error);
     }
   };
