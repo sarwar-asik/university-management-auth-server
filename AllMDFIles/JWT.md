@@ -137,7 +137,7 @@
 
 ### modules>auth>login.controller.ts (for refreshToken) ::::
 
-         const refreshTokenController = catchAsync(
+         <!-- const refreshTokenController = catchAsync( -->
             async (req: Request, res: Response) => {
                 const { refreshToken } = req.cookies;
 

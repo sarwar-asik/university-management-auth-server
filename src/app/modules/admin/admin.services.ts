@@ -2,13 +2,12 @@
 import httpStatus from 'http-status';
 import mongoose, { SortOrder } from 'mongoose';
 import ApiError from '../../../errors/ApiError';
-import { paginationHelpers } from '../../../helpers/paginationHelper';
-import { IGenericResponse } from '../../../interfaces/common';
-import { IPaginationOptions } from '../../../interfaces/pagination';
-import { User } from '../user/user.model';
+
 import { adminSearchableFields } from './admin.constant';
 import { IAdmin, IAdminFilters } from './admin.interface';
 import { Admin } from './admin.model';
+import { IGenericResponse } from '../../../interfaces/ICommon';
+import calculatePagination from '../../../helpers/paginationHelpers';
 
 const getAllAdmins = async (
   filters: IAdminFilters,
@@ -16,7 +15,7 @@ const getAllAdmins = async (
 ): Promise<IGenericResponse<IAdmin[]>> => {
   const { searchTerm, ...filtersData } = filters;
   const { page, limit, skip, sortBy, sortOrder } =
-    paginationHelpers.calculatePagination(paginationOptions);
+    calculatePagination(paginationOptions);
 
   const andConditions = [];
 

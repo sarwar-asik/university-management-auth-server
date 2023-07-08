@@ -21,6 +21,9 @@ app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+
+
 // Application
 
 // app.use('/api/v1/users', UserRouter)

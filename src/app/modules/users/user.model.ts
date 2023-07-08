@@ -20,10 +20,14 @@ const userSchema = new Schema<IUser, UserModel>(
     password: {
       type: String,
       required: true,
+      select:0
     },
     needsPasswordsChange: {
       type: Boolean,
       default: true,
+    },
+    passwordChangedAT:{
+      type:Date
     },
     student: {
       type: Schema.Types.ObjectId,
@@ -85,12 +89,23 @@ userSchema.statics.isPasswordMatchMethod = async function (
 userSchema.pre('save', async function (next) {
   /////  hassing user password
   // hash password ///
+
   const user = this;
   user.password = await bcrypt.hash(
     user.password,
     Number(configTs.bcrypt_salt_rounds)
-  );
-  next();
-});
+  )
+
+  if(!user?.needsPasswordsChange){
+    user.passwordChangedAT = new Date()
+  }
+  next();  
+
+})
+
+
+
+
+
 
 export const User = model<IUser, UserModel>('User', userSchema);

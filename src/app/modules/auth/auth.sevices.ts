@@ -3,11 +3,16 @@
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { User } from '../users/user.model';
-import { ILogin, ILoginResponse, IRefreshTokenResponse } from './auth.Interface';
-import  { Secret } from 'jsonwebtoken';
+import {
+  IChangePassword,
+  ILogin,
+  ILoginResponse,
+  IRefreshTokenResponse,
+} from './auth.Interface';
+import { JwtPayload, Secret } from 'jsonwebtoken';
 import config from '../../../config';
 import { jwtHelpers } from '../../../helpers/jwt.helpers';
-import 'colors'
+import 'colors';
 
 export const authServices = async (
   payload: ILogin
@@ -66,7 +71,9 @@ export const authServices = async (
   // return payload
 };
 
-export const refreshTokenServices = async (token: string):Promise<IRefreshTokenResponse> => {
+export const refreshTokenServices = async (
+  token: string
+): Promise<IRefreshTokenResponse> => {
   console.log(token, 'from refreshTokenService');
   // verify token
   let verifiedToken = null;
@@ -74,7 +81,10 @@ export const refreshTokenServices = async (token: string):Promise<IRefreshTokenR
 
   try {
     // verifiedToken = jwt.verify(token, config.jwt.refresh_secret );
-    verifiedToken = jwtHelpers.verifyToken(token,config.jwt.refresh_secret as Secret)
+    verifiedToken = jwtHelpers.verifyToken(
+      token,
+      config.jwt.refresh_secret as Secret
+    );
     // console.log(verifiedToken,"verifiend");
   } catch (error) {
     // console.log(error,"from refreshToken");
@@ -88,17 +98,63 @@ export const refreshTokenServices = async (token: string):Promise<IRefreshTokenR
     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exists');
   }
 
-
-  const newAccessToken = jwtHelpers.createToken({id:isUserExist?.id,role:isUserExist?.role},
+  const newAccessToken = jwtHelpers.createToken(
+    { id: isUserExist?.id, role: isUserExist?.role },
     config.jwt.secret as Secret,
     config.jwt.expires_in as string
-    )
+  );
 
-    return {
-     accessToken: newAccessToken
-    }
+  return {
+    accessToken: newAccessToken,
+  };
+};
+
+export const changePasswordServices = async (
+  user: JwtPayload | null,
+  payload: IChangePassword
+): Promise<void> => {
+  const { oldPassword, newPassword } = payload;
+  console.log(oldPassword, newPassword);
+
+  // const isUserExist = await User.isUserExistsMethod(user?.userId);
+
+
+  const isUserExist = await User.findOne({id:user?.userId}).select('+password')
+  console.log(isUserExist,"Is UserExits");
+
+  if (!isUserExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User Does Not Exits ');
+  }
+
+  if (
+    isUserExist.password &&
+    !(await User.isPasswordMatchMethod(oldPassword, isUserExist?.password))
+  ) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Old Password is not correct');
+  }
+  // hash password before saver
+
+  // const newHashedPassword = await bcrypt.hash(
+  //   newPassword,
+  //   Number(config.bcrypt_salt_rounds as string)
+  // )
+
+
+  // const updatePassData = {
+  //   password: newHashedPassword,
+  //   needsPasswordsChange: false,
+  //   passwordChangedAT: new Date(),
+  // };
+  // const updateResult = await User.findByIdAndUpdate(
+  //   { id: user?.userId },
+  //   updatePassData
+  // );
+  // console.log(updateResult);
+
+  isUserExist.password =newPassword
+
+  isUserExist.save()
 
 
 
-  
 };

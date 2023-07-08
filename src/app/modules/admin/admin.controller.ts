@@ -6,7 +6,7 @@ import pick from '../../../shared/pick';
 
 import { adminFilterableFields } from './admin.constant';
 import { IAdmin } from './admin.interface';
-import { AdminService } from './admin.service';
+import { AdminService } from './admin.services';
 import { paginationFields } from '../../../constant/pagination';
 import sendResponse from '../../../shared/sendResponce';
 

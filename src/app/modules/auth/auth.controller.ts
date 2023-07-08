@@ -3,15 +3,19 @@ import { Request, Response } from 'express';
 
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponce';
-import { authServices, refreshTokenServices } from './auth.sevices';
+import {
+  authServices,
+  changePasswordServices,
+  refreshTokenServices,
+} from './auth.sevices';
 import config from '../../../config';
 import { IRefreshTokenResponse } from './auth.Interface';
 
 const loginController = catchAsync(async (req: Request, res: Response) => {
-  const { ...loginData } = req.body;
+  const { ...passwordData } = req.body;
 
-  // console.log(loginData,"asdfsd");
-  const result = await authServices(loginData);
+  // console.log(passwordData,"asdfsd");
+  const result = await authServices(passwordData);
 
   const { refreshToken, ...others } = result;
 
@@ -75,4 +79,22 @@ const refreshTokenController = catchAsync(
   }
 );
 
-export const authController = { loginController, refreshTokenController };
+const changePasswordController = catchAsync(
+  async (req: Request, res: Response) => {
+    const user = req.user;
+
+    const { ...passwordData } = req.body;
+
+    await changePasswordServices(user, passwordData);
+    sendResponse(res, {
+      success: true,
+      message: 'successfully Change Password',
+      statusCode: 200,
+    });
+  }
+);
+export const authController = {
+  loginController,
+  refreshTokenController,
+  changePasswordController,
+};
