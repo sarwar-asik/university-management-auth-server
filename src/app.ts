@@ -7,12 +7,12 @@ import cors from 'cors';
 import GlobalHandler from './app/middlesWare/globalErrorHandler';
 
 import routes from './app/routes';
-import sendResponse from './shared/sendResponce';
+// import sendResponse from './shared/sendResponce';
 import cookieParser from "cookie-parser"
 // import { generateFacultyId } from './app/modules/users/user.utils';
 
 // import { createUser } from './app/modules/users/users.services'
-
+   
 const app: Application = express();
 // const port = 3000
 
@@ -41,12 +41,18 @@ app.get('/', async (req: Request, res: Response) => {
 
   // throw new Error("Error from app.get")
   // next("next error")
-  sendResponse(res, {
+  // sendResponse(res, {
+  //   success: true,
+  //   message: 'Running the University Management Server',
+  //   statusCode: 201,
+  //   data: null,
+  // });
+
+  res.send( {
     success: true,
     message: 'Running the University Management Server',
-    statusCode: 201,
-    data: null,
-  });
+    statusCode: 201
+  })
   // next();
 });
 
