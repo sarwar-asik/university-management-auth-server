@@ -1,3 +1,4 @@
+import 'colors';
 import { Server } from 'http';
 import mongoose from 'mongoose';
 import app from './app';
@@ -14,10 +15,12 @@ let server: Server;
 async function bootstrap() {
   try {
     await mongoose.connect(config.database_url as string);
-    logger.info(`🛢   Database is connected successfully`);
+    logger.info(`🛢   Database is connected successfully`.yellow.underline.bold);
 
     server = app.listen(config.port, () => {
-      logger.info(`Application  listening on port ${config.port}`);
+      logger.info(
+        `Application  listening on port ${config.port}`.green.underline.bold
+      );
     });
   } catch (err) {
     errorlogger.error('Failed to connect database', err);

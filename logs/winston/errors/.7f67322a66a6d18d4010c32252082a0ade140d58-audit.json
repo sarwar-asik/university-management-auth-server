@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\8.um-auth-service-api-getway\\logs\\winston\\errors\\.7f67322a66a6d18d4010c32252082a0ade140d58-audit.json",
+    "files": [
+        {
+            "date": 1695144574434,
+            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\8.um-auth-service-api-getway\\logs\\winston\\errors\\phu-2023-19-09-23-error.log",
+            "hash": "5568782682017ff242502931060e9e0478d2a44691d3366f68293ba9b2ac58f7"
+        }
+    ],
+    "hashType": "sha256"
+}
