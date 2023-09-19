@@ -14,6 +14,11 @@
             "date": 1695148094137,
             "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\8.um-auth-service-api-getway\\logs\\winston\\errors\\SHu-2023-20-09-00-error.log",
             "hash": "34289a1ee429879424199570115db7e102a4c419006f337258fb01e50096d203"
+        },
+        {
+            "date": 1695150010155,
+            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\8.um-auth-service-api-getway\\logs\\winston\\errors\\SHu-2023-20-09-01-error.log",
+            "hash": "d3b16a4a05f445c3b1b7ab18cecf9bc7bf7fe3ed75e216802b0ebc3bb80d1937"
         }
     ],
     "hashType": "sha256"
