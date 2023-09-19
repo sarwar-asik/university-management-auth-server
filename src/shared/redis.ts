@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createClient } from 'redis';
 import config from '../config';
 
@@ -11,14 +12,17 @@ const redisSubClient = createClient({
   url: config.redis.url,
 });
 
+redisClient.on('error', error => console.log('Redis Error', error));
+redisClient.on('connect', error => console.log('Redis connected'));
+
 const connect = async (): Promise<void> => {
   await redisClient.connect();
   await redisPubClient.connect();
   await redisSubClient.connect();
 };
 
-export const RedisClient ={
+export const RedisClient = {
   connect,
-  publish:redisPubClient.publish.bind(redisPubClient),
-  subscribe:redisSubClient.publish.bind(redisSubClient)
-}
+  publish: redisPubClient.publish.bind(redisPubClient),
+  subscribe: redisSubClient.publish.bind(redisSubClient),
+};
