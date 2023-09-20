@@ -1,0 +1,6 @@
+Wed Sep 20 2023 16:36:42 } [SH] error: Invalid argument type
+Wed Sep 20 2023 16:45:0 } [SH] error: Invalid argument type
+Wed Sep 20 2023 16:46:27 } [SH] error: Invalid argument type
+Wed Sep 20 2023 16:48:18 } [SH] error: Invalid argument type
+Wed Sep 20 2023 16:48:31 } [SH] error: Invalid argument type
+Wed Sep 20 2023 16:49:0 } [SH] error: Failed to connect database redis_1.RedisClient.subscribe is not a function
