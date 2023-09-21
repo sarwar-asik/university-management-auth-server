@@ -1,0 +1,2 @@
+Thu Sep 21 2023 12:11:59 } [SH] error: Failed to connect database d is not defined
+Thu Sep 21 2023 12:21:9 } [SH] error: Cast to ObjectId failed for value "{ syncId: '8fc00e53-9cb2-422d-9f13-c323893182d0' }" (type Object) at path "_id" for model "AcademicSemester"
