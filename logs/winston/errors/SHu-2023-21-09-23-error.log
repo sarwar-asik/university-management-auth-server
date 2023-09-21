@@ -1,0 +1,1 @@
+Thu Sep 21 2023 23:6:42 } [SH] error: Cast to ObjectId failed for value "8fc00e53-9cb2-422d-9f13-c323893182d0" (type string) at path "_id" for model "AcademicSemester"

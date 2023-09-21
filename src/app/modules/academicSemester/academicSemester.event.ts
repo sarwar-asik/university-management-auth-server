@@ -34,6 +34,7 @@ const initAcademicSemesterEvents = () => {
     EVENT_ACADEMIC_SEMESTER_DELETED,
     async (event: string) => {
       const data: IAcademicSemesterCreatedEvent = JSON.parse(event);
+      await  AcademicSemesterService.deleteOneIntoDbFromEvent(data)
       console.log(data,"deleted data ");
     }
   );

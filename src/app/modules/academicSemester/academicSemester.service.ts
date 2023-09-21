@@ -136,10 +136,6 @@ const deleteSemester = async (
   return result;
 };
 
-
-
-
-
 // ! Redis for create event ///
 const createSemesterFromEvent = async (
   e: IAcademicSemesterCreatedEvent
@@ -150,26 +146,35 @@ const createSemesterFromEvent = async (
     code: e.code,
     startMonth: e.startMonth,
     endMonth: e.endMonth,
-    syncId: e.id
+    syncId: e.id,
   });
 };
 
+// ! Redis for event update ///
+const updateOneIntoDbFromEvent = async (
+  e: IAcademicSemesterCreatedEvent
+): Promise<void> => {
+  await AcademicSemester.findByIdAndUpdate(
+    { syncId: e.id },
+    {
+      $set: {
+        title: e.title,
+        year: e.year,
+        code: e.code,
+        startMonth: e.startMonth,
+        endMonth: e.endMonth,
+      },
+    }
+  );
+};
 
 // ! Redis for event update ///
-const updateOneIntoDbFromEvent =async(e:IAcademicSemesterCreatedEvent):Promise<void>=>{
-  await AcademicSemester.findByIdAndUpdate(
-    {syncId:e.id},
-  {
-    $set:{
-      title:e.title,
-      year:e.year,
-      code:e.code,
-      startMonth:e.startMonth,
-      endMonth:e.endMonth
-    }
-  }
-    )
-}
+const deleteOneIntoDbFromEvent = async (
+  e: IAcademicSemesterCreatedEvent
+): Promise<void> => {
+  console.log(e,"for delete in mongodb auth");
+  await AcademicSemester.findOneAndDelete({syncId:e.id})
+};
 
 export const AcademicSemesterService = {
   createSemester,
@@ -179,4 +184,5 @@ export const AcademicSemesterService = {
   deleteSemester,
   createSemesterFromEvent,
   updateOneIntoDbFromEvent,
+  deleteOneIntoDbFromEvent,
 };

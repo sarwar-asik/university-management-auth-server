@@ -34,7 +34,6 @@ const academicSemesterSchema = new Schema<IAcademicSemester>(
       required: true,
       enum: acdemicSemesterMonths,
     },
-    
     syncId: {
       type: String,
       required: true
